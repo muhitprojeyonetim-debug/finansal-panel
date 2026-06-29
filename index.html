@@ -10,16 +10,16 @@
 [data-tema="acik"]{--bg:#f0f2f7;--bg2:#ffffff;--bg3:#e4e8f0;--brd:#d0d5e2;--brd2:#b8bfd0;--tx:#1a1f2e;--tx2:#5a6380;--tx3:#8a92aa;--gr:#00a862;--grd:rgba(0,168,98,.08);--rd:#d93050;--rdd:rgba(217,48,80,.08);--gld:#c8860a;--bl:#2070d0;--bld:rgba(32,112,208,.1)}
 body{background:var(--bg);color:var(--tx);font-family:system-ui,sans-serif;font-size:14px;min-height:100vh}
 .app{display:flex;flex-direction:column;min-height:100vh}
-.nav{display:flex;padding:.5rem .75rem;background:var(--bg2);border-bottom:.5px solid var(--brd);position:sticky;top:0;z-index:10;align-items:center;justify-content:space-between;gap:8px}
-.nav-tabs{display:flex;gap:2px}
-.nb{font-size:13px;padding:6px 12px;border-radius:var(--r);border:none;background:transparent;color:var(--tx2);cursor:pointer;touch-action:manipulation}
+.nav{display:flex;padding:.5rem .75rem;background:var(--bg2);border-bottom:.5px solid var(--brd);position:sticky;top:0;z-index:10;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.nav-tabs{display:flex;gap:2px;flex-wrap:wrap}
+.nb{font-size:13px;padding:7px 14px;border-radius:var(--r);border:none;background:transparent;color:var(--tx2);cursor:pointer;touch-action:manipulation;min-height:36px}
 .nb:hover,.nb.on{background:var(--bg3);color:var(--tx);font-weight:500}
 .pg{display:none;padding:.875rem;max-width:1100px;margin:0 auto;width:100%}
 .pg.on{display:block}
 .ph h2{font-size:19px;font-weight:600;margin-bottom:.25rem}
 .ph p{font-size:12px;color:var(--tx2);margin-bottom:.875rem}
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:.875rem}
-@media(min-width:500px){.stats{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:400px){.stats{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:700px){.stats{grid-template-columns:repeat(5,1fr)}}
 .sc{background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--r);padding:.75rem}
 .sl{font-size:10px;color:var(--tx3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px}
@@ -39,19 +39,22 @@ body{background:var(--bg);color:var(--tx);font-family:system-ui,sans-serif;font-
 .kh{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1rem;cursor:pointer;gap:8px;user-select:none;touch-action:manipulation}
 .kh:hover{background:var(--bg3)}
 .khl{flex:1;min-width:0}
-.kad{font-size:13px;font-weight:500;line-height:1.3}
-.ksub{font-size:12px;color:var(--tx2);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.kbrc{font-size:14px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+.kad{font-size:15px;font-weight:600;line-height:1.3}
+.ksub{font-size:13px;color:var(--tx2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.krow-nums{display:flex;flex-direction:row;align-items:center;gap:8px;flex-wrap:nowrap}
+.krow-asgari{font-size:12px;color:var(--tx2);white-space:nowrap;font-variant-numeric:tabular-nums;padding:2px 7px;background:var(--bg3);border-radius:5px;border:.5px solid var(--brd2)}
+.krow-donem{font-size:16px;font-weight:700;color:var(--gld);white-space:nowrap;font-variant-numeric:tabular-nums;padding:4px 11px;background:rgba(240,180,41,.13);border-radius:7px;border:1.5px solid rgba(240,180,41,.5)}
+.krow-toplam{font-size:19px;font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums;min-width:90px;text-align:right}
 .kb{border-top:.5px solid var(--brd);padding:.875rem 1rem;display:none}
 .kb.on{display:block}
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:.875rem}
 @media(min-width:520px){.fg{grid-template-columns:repeat(4,1fr)}}
 .fi{display:flex;flex-direction:column;gap:3px}
-.fl{font-size:10px;color:var(--tx3);text-transform:uppercase;letter-spacing:.3px}
-.e{outline:none;border-radius:4px;padding:3px 5px;cursor:text;background:transparent;display:block;width:100%;font-size:13px;font-weight:500;color:var(--tx);border:.5px solid transparent;min-height:28px;-webkit-user-select:text;user-select:text;font-variant-numeric:tabular-nums}
+.fl{font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:.3px}
+.e{outline:none;border-radius:4px;padding:3px 5px;cursor:text;background:transparent;display:block;width:100%;font-size:15px;font-weight:500;color:var(--tx);border:.5px solid transparent;min-height:30px;-webkit-user-select:text;user-select:text;font-variant-numeric:tabular-nums}
 .e:hover{background:var(--bg3)}
 .e:focus{background:var(--bld);color:var(--bl);border-color:var(--bl)}
-.fv{font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
+.fv{font-size:15px;font-weight:500;font-variant-numeric:tabular-nums}
 .kbs{display:flex;gap:6px;flex-wrap:wrap}
 .od{font-size:12px;padding:6px 14px;border-radius:var(--r);border:.5px solid var(--gr);color:var(--gr);background:var(--grd);cursor:pointer;touch-action:manipulation;transition:all .15s}
 .od:hover{background:var(--gr);color:#000}
@@ -64,6 +67,13 @@ body{background:var(--bg);color:var(--tx);font-family:system-ui,sans-serif;font-
 .cv.on{transform:rotate(180deg)}
 .box{background:var(--bg2);border:.5px solid var(--brd);border-radius:var(--r);overflow:hidden;margin-bottom:10px}
 .bxh{padding:.85rem 1.1rem;border-bottom:.5px solid var(--brd);font-size:16px;font-weight:600;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.brow{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;border-bottom:.5px solid var(--brd)}
+.brow:last-child{border-bottom:none}
+.brow:nth-child(odd){background:var(--bg2)}
+.brow:nth-child(even){background:var(--bg3)}
+.brow:hover{background:var(--bld)!important}
+.brl{font-size:17px;color:var(--tx)}
+.brv{font-size:18px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
 .px-row{display:flex;gap:14px;padding:.875rem 1rem;flex-wrap:wrap;align-items:flex-end}
 .pxi{display:flex;flex-direction:column;gap:3px}
 .pxl{font-size:12px;color:var(--tx3);text-transform:uppercase;letter-spacing:.3px}
@@ -80,42 +90,23 @@ body{background:var(--bg);color:var(--tx);font-family:system-ui,sans-serif;font-
 .ycol{display:flex;flex-direction:column;gap:4px;min-width:90px}
 .ysem{min-width:80px}
 .yfl{font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:.3px}
-.yr:last-child{border-bottom:none}
-.yr:hover{background:var(--bg3)}
-.ymid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;flex:1;min-width:180px}
-.yf{display:flex;flex-direction:column;gap:2px}
-.yfl{font-size:10px;color:var(--tx3);text-transform:uppercase;letter-spacing:.3px}
+.ytip-sel{background:var(--bg3);border:.5px solid var(--brd2);color:var(--tx2);border-radius:4px;padding:3px 6px;font-size:11px}
 .px-b{font-size:10px;padding:3px 8px;border-radius:4px}
 .px-ok{background:var(--grd);border:.5px solid var(--gr);color:var(--gr)}
 .px-loading{background:var(--bld);border:.5px solid var(--bl);color:var(--bl)}
 .px-err{background:var(--rdd);border:.5px solid var(--rd);color:var(--rd)}
 .spin{display:inline-block;width:9px;height:9px;border:1.5px solid var(--brd2);border-top-color:var(--bl);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:3px}
 @keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .sb{position:sticky;bottom:0;background:var(--bg2);border-top:.5px solid var(--brd);padding:.625rem .875rem;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;z-index:10}
 .sm{font-size:12px;color:var(--tx2)}
 .neg{color:var(--rd)!important}
 .r{color:var(--rd)!important}.g{color:var(--gr)!important}.b{color:var(--bl)!important}
-.ytip-sel{background:var(--bg3);border:.5px solid var(--brd2);color:var(--tx2);border-radius:4px;padding:3px 6px;font-size:11px}
-::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:2px}
 .sync-info{font-size:11px;color:var(--tx3);display:flex;align-items:center;gap:4px}
 .sync-dot{width:7px;height:7px;border-radius:50%;background:#555;display:inline-block;flex-shrink:0}
 .sync-dot.ok{background:#00c87a}.sync-dot.err{background:#f0405a}.sync-dot.loading{background:#f0b429;animation:pulse 1s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-
-/* Kapalı satır: toplam borç + asgari + dönem yan yana */
-.krow-nums{display:flex;flex-direction:row;align-items:center;gap:10px;flex-wrap:nowrap}
-.krow-toplam{font-size:19px;font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums;min-width:90px;text-align:right}
-.krow-asgari{font-size:12px;color:var(--tx2);white-space:nowrap;font-variant-numeric:tabular-nums;padding:2px 7px;background:var(--bg3);border-radius:5px;border:.5px solid var(--brd2)}
-.krow-donem{font-size:16px;font-weight:700;color:var(--gld);white-space:nowrap;font-variant-numeric:tabular-nums;padding:4px 11px;background:rgba(240,180,41,.13);border-radius:7px;border:1.5px solid rgba(240,180,41,.5)}
-
-/* Bilanço büyük fontlar */
-.brow{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;border-bottom:.5px solid var(--brd)}
-.brow:last-child{border-bottom:none}
-.brow:nth-child(odd){background:var(--bg2)}
-.brow:nth-child(even){background:var(--bg3)}
-.brow:hover{background:var(--bg3)!important}
-.brl{font-size:17px;color:var(--tx)}
-.brv{font-size:18px;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:2px}
+@media(max-width:400px){.pg{padding:.5rem}.kh{padding:.625rem .75rem}.kb{padding:.75rem .75rem}.kad{font-size:14px}.krow-toplam{font-size:16px}.sv{font-size:15px}}
 </style>
 </head>
 <body>
@@ -127,10 +118,8 @@ body{background:var(--bg);color:var(--tx);font-family:system-ui,sans-serif;font-
     <button class="nb" onclick="gp('yatirimlar',this)">Yatırımlar</button>
   </div>
   <div style="display:flex;gap:6px;align-items:center">
-    <button class="btn" onclick="togTema()" id="tema-btn" style="font-size:16px;padding:4px 8px;background:transparent;border:none;cursor:pointer" title="Tema değiştir">☀️</button>
+    <button onclick="togTema()" id="tema-btn" style="font-size:16px;padding:4px 8px;background:transparent;border:none;cursor:pointer;line-height:1" title="Tema">☀️</button>
     <div class="sync-info"><span class="sync-dot loading" id="sync-dot"></span><span id="sync-text">Bağlanıyor...</span></div>
-    <span id="pxs" class="px-b px-loading" style="display:none"></span>
-    <button class="btn btb" onclick="fetchFiyat()" style="font-size:11px;padding:4px 9px">↻</button>
   </div>
 </nav>
 
@@ -149,21 +138,19 @@ body{background:var(--bg);color:var(--tx);font-family:system-ui,sans-serif;font-
 </div>
 
 <div class="pg" id="pg-bilanco">
-  <div class="ph"><h2>Bilanço</h2><p>Fiyatlar otomatik · Değerlere tıklayarak düzenle</p></div>
+  <div class="ph"><h2>Bilanço</h2><p>Fiyatları manuel gir · Değerlere tıklayarak düzenle</p></div>
   <div class="stats" id="bil-stats"></div>
   <div class="box">
     <div class="bxh">Piyasa Fiyatları
       <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
-        <span id="pxs2" class="px-b px-loading"><span class="spin"></span>yükleniyor</span>
-        <button class="btn" onclick="fetchFiyat()" style="font-size:11px;padding:4px 9px">↻ Yenile</button>
-        <button class="btn" onclick="fUygula()" style="font-size:11px;padding:4px 9px">✓ Manuel</button>
+        <button class="btn" onclick="fUygula()" style="font-size:11px;padding:4px 9px">✓ Uygula</button>
       </div>
     </div>
     <div class="px-row">
-      <div class="pxi"><div class="pxl">USD/TRY</div><div class="pxv" id="pxusd">—</div><input class="pxinp" id="inpusd" type="number" step="0.01" placeholder="manuel giriş"></div>
-      <div class="pxi"><div class="pxl">24 Ayar (₺/gram)</div><div class="pxv" id="pxau24">—</div><input class="pxinp" id="inpau24" type="number" step="1" placeholder="manuel giriş"></div>
-      <div class="pxi"><div class="pxl">22 Ayar (₺/gram)</div><div class="pxv" id="pxau22">—</div><input class="pxinp" id="inpau22" type="number" step="1" placeholder="manuel giriş"></div>
-      <div class="pxi"><div class="pxl">Çeyrek Altın (₺)</div><div class="pxv" id="pxceyrek">—</div><input class="pxinp" id="inpceyrek" type="number" step="1" placeholder="manuel giriş"></div>
+      <div class="pxi"><div class="pxl">USD/TRY</div><div class="pxv" id="pxusd">—</div><input class="pxinp" id="inpusd" type="number" step="0.01" placeholder="giriş yap"></div>
+      <div class="pxi"><div class="pxl">24 Ayar (₺/gram)</div><div class="pxv" id="pxau24">—</div><input class="pxinp" id="inpau24" type="number" step="1" placeholder="giriş yap"></div>
+      <div class="pxi"><div class="pxl">22 Ayar (₺/gram)</div><div class="pxv" id="pxau22">—</div><input class="pxinp" id="inpau22" type="number" step="1" placeholder="giriş yap"></div>
+      <div class="pxi"><div class="pxl">Çeyrek Altın (₺)</div><div class="pxv" id="pxceyrek">—</div><input class="pxinp" id="inpceyrek" type="number" step="1" placeholder="giriş yap"></div>
     </div>
   </div>
   <div class="bg2c">
@@ -173,7 +160,7 @@ body{background:var(--bg);color:var(--tx);font-family:system-ui,sans-serif;font-
 </div>
 
 <div class="pg" id="pg-yatirimlar">
-  <div class="ph"><h2>Yatırımlar</h2><p>Sembol değiştirince fiyat otomatik güncellenir</p></div>
+  <div class="ph"><h2>Yatırımlar</h2><p>Adet ve birim fiyat gir · TL değeri otomatik hesaplanır</p></div>
   <div class="stats" id="yat-stats"></div>
   <div class="box" id="yat-list"></div>
   <div class="ak" onclick="yEkle()">＋ Yatırım Ekle</div>
@@ -211,7 +198,7 @@ function setSyncStatus(d,m){
 }
 
 const AY=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
-const MK=[{"ad":"KUVEYTTÜRK KONUT KREDİSİ","asgari":2578,"donem_borcu":2578,"son_odeme":"02.03.2026","hesap_kesim":"","limit":0,"toplam_borc":128882,"odendi":false},{"ad":"AKBANK KREDİ KARTI **79","asgari":5360,"donem_borcu":5360,"son_odeme":"04.05.2026","hesap_kesim":"23.04.2026","limit":0,"toplam_borc":0,"odendi":false},{"ad":"AKBANK KREDİ KARTI **19","asgari":40,"donem_borcu":40,"son_odeme":"04.05.2026","hesap_kesim":"24.04.2026","limit":1390900,"toplam_borc":11252,"odendi":false},{"ad":"QNB KREDİ KARTI","asgari":20740,"donem_borcu":80494,"son_odeme":"04.05.2026","hesap_kesim":"24.04.2026","limit":1114000,"toplam_borc":81588,"odendi":false},{"ad":"İŞ BANKASI BLACK KART","asgari":3298,"donem_borcu":8246,"son_odeme":"08.05.2026","hesap_kesim":"28.04.2026","limit":148700,"toplam_borc":7196,"odendi":false},{"ad":"KUVEYTTÜRK MİLES **27","asgari":6086,"donem_borcu":6086,"son_odeme":"09.05.2026","hesap_kesim":"01.05.2026","limit":70000,"toplam_borc":41176,"odendi":false},{"ad":"GARANTİ BANK KREDİ KARTI","asgari":0,"donem_borcu":0,"son_odeme":"14.05.2026","hesap_kesim":"04.05.2026","limit":20000,"toplam_borc":0,"odendi":false},{"ad":"AKBANK AXESS TROY **30","asgari":0,"donem_borcu":0,"son_odeme":"13.05.2026","hesap_kesim":"08.05.2026","limit":650000,"toplam_borc":0,"odendi":false},{"ad":"ZİRAAT BANK KREDİ KARTI","asgari":3000,"donem_borcu":15000,"son_odeme":"15.05.2026","hesap_kesim":"05.05.2026","limit":50000,"toplam_borc":0,"odendi":false},{"ad":"QNB KREDİ 6 TAKSİT","asgari":18286,"donem_borcu":18286,"son_odeme":"13.05.2026","hesap_kesim":"","limit":0,"toplam_borc":54860,"odendi":false},{"ad":"METENİN OKUL TAKSİDİ","asgari":20000,"donem_borcu":20000,"son_odeme":"15.05.2026","hesap_kesim":"","limit":0,"toplam_borc":20000,"odendi":false},{"ad":"ZİRAAT BANK KREDİ ÖDEMESİ","asgari":2050,"donem_borcu":2050,"son_odeme":"18.05.2026","hesap_kesim":"","limit":0,"toplam_borc":6000,"odendi":false},{"ad":"AKBANK AXESS TROY **44","asgari":0,"donem_borcu":0,"son_odeme":"15.05.2026","hesap_kesim":"07.05.2026","limit":480000,"toplam_borc":0,"odendi":false},{"ad":"VAKIFBANK BUSİNESS PROCARD","asgari":0,"donem_borcu":0,"son_odeme":"19.05.2026","hesap_kesim":"14.05.2026","limit":50000,"toplam_borc":0,"odendi":false},{"ad":"VAKIF BANK WORLD TROY","asgari":7352,"donem_borcu":7352,"son_odeme":"22.05.2026","hesap_kesim":"13.05.2026","limit":47250,"toplam_borc":42350,"odendi":false},{"ad":"HALKBANK PARAF","asgari":0,"donem_borcu":0,"son_odeme":"22.05.2026","hesap_kesim":"11.05.2026","limit":50000,"toplam_borc":0,"odendi":false},{"ad":"YAPI KREDİ WORLD KART","asgari":16882,"donem_borcu":28500,"son_odeme":"22.05.2026","hesap_kesim":"13.05.2026","limit":38500,"toplam_borc":6080,"odendi":false},{"ad":"KUVEYTTÜRK KREDİ KARTI **05","asgari":0,"donem_borcu":0,"son_odeme":"27.05.2026","hesap_kesim":"13.05.2026","limit":100000,"toplam_borc":0,"odendi":false},{"ad":"YAPI KREDİ TİCARİ KART","asgari":0,"donem_borcu":0,"son_odeme":"25.05.2026","hesap_kesim":"20.05.2026","limit":221400,"toplam_borc":0,"odendi":false},{"ad":"İŞ BANKASI BUSSİNES KART","asgari":0,"donem_borcu":0,"son_odeme":"29.05.2026","hesap_kesim":"24.05.2026","limit":100000,"toplam_borc":0,"odendi":false},{"ad":"YAPI KREDİ KMH","asgari":0,"donem_borcu":0,"son_odeme":"","hesap_kesim":"","limit":700000,"toplam_borc":0,"odendi":false}];
+const MK=[{"ad":"KUVEYTTÜRK KONUT KREDİSİ","tip":"kredi","asgari":2578,"donem_borcu":2578,"son_odeme":"02.03.2026","hesap_kesim":"","limit":0,"toplam_borc":128882,"odendi":false},{"ad":"AKBANK KREDİ KARTI **79","tip":"kart","asgari":5360,"donem_borcu":5360,"son_odeme":"04.05.2026","hesap_kesim":"23.04.2026","limit":0,"toplam_borc":0,"odendi":false},{"ad":"AKBANK KREDİ KARTI **19","tip":"kart","asgari":40,"donem_borcu":40,"son_odeme":"04.05.2026","hesap_kesim":"24.04.2026","limit":1390900,"toplam_borc":11252,"odendi":false},{"ad":"QNB KREDİ KARTI","tip":"kart","asgari":20740,"donem_borcu":80494,"son_odeme":"04.05.2026","hesap_kesim":"24.04.2026","limit":1114000,"toplam_borc":81588,"odendi":false},{"ad":"İŞ BANKASI BLACK KART","tip":"kart","asgari":3298,"donem_borcu":8246,"son_odeme":"08.05.2026","hesap_kesim":"28.04.2026","limit":148700,"toplam_borc":7196,"odendi":false},{"ad":"KUVEYTTÜRK MİLES **27","tip":"kart","asgari":6086,"donem_borcu":6086,"son_odeme":"09.05.2026","hesap_kesim":"01.05.2026","limit":70000,"toplam_borc":41176,"odendi":false},{"ad":"GARANTİ BANK KREDİ KARTI","tip":"kart","asgari":0,"donem_borcu":0,"son_odeme":"14.05.2026","hesap_kesim":"04.05.2026","limit":20000,"toplam_borc":0,"odendi":false},{"ad":"AKBANK AXESS TROY **30","tip":"kart","asgari":0,"donem_borcu":0,"son_odeme":"13.05.2026","hesap_kesim":"08.05.2026","limit":650000,"toplam_borc":0,"odendi":false},{"ad":"ZİRAAT BANK KREDİ KARTI","tip":"kart","asgari":3000,"donem_borcu":15000,"son_odeme":"15.05.2026","hesap_kesim":"05.05.2026","limit":50000,"toplam_borc":0,"odendi":false},{"ad":"QNB KREDİ 6 TAKSİT","tip":"kredi","asgari":18286,"donem_borcu":18286,"son_odeme":"13.05.2026","hesap_kesim":"","limit":0,"toplam_borc":54860,"odendi":false},{"ad":"METENİN OKUL TAKSİDİ","tip":"kredi","asgari":20000,"donem_borcu":20000,"son_odeme":"15.05.2026","hesap_kesim":"","limit":0,"toplam_borc":20000,"odendi":false},{"ad":"ZİRAAT BANK KREDİ ÖDEMESİ","tip":"kredi","asgari":2050,"donem_borcu":2050,"son_odeme":"18.05.2026","hesap_kesim":"","limit":0,"toplam_borc":6000,"odendi":false},{"ad":"AKBANK AXESS TROY **44","tip":"kart","asgari":0,"donem_borcu":0,"son_odeme":"15.05.2026","hesap_kesim":"07.05.2026","limit":480000,"toplam_borc":0,"odendi":false},{"ad":"VAKIFBANK BUSİNESS PROCARD","tip":"kart","asgari":0,"donem_borcu":0,"son_odeme":"19.05.2026","hesap_kesim":"14.05.2026","limit":50000,"toplam_borc":0,"odendi":false},{"ad":"VAKIF BANK WORLD TROY","tip":"kart","asgari":7352,"donem_borcu":7352,"son_odeme":"22.05.2026","hesap_kesim":"13.05.2026","limit":47250,"toplam_borc":42350,"odendi":false},{"ad":"HALKBANK PARAF","tip":"kart","asgari":0,"donem_borcu":0,"son_odeme":"22.05.2026","hesap_kesim":"11.05.2026","limit":50000,"toplam_borc":0,"odendi":false},{"ad":"YAPI KREDİ WORLD KART","tip":"kart","asgari":16882,"donem_borcu":28500,"son_odeme":"22.05.2026","hesap_kesim":"13.05.2026","limit":38500,"toplam_borc":6080,"odendi":false},{"ad":"KUVEYTTÜRK KREDİ KARTI **05","tip":"kart","asgari":0,"donem_borcu":0,"son_odeme":"27.05.2026","hesap_kesim":"13.05.2026","limit":100000,"toplam_borc":0,"odendi":false},{"ad":"YAPI KREDİ TİCARİ KART","tip":"kart","asgari":0,"donem_borcu":0,"son_odeme":"25.05.2026","hesap_kesim":"20.05.2026","limit":221400,"toplam_borc":0,"odendi":false},{"ad":"İŞ BANKASI BUSSİNES KART","tip":"kart","asgari":0,"donem_borcu":0,"son_odeme":"29.05.2026","hesap_kesim":"24.05.2026","limit":100000,"toplam_borc":0,"odendi":false},{"ad":"YAPI KREDİ KMH","tip":"kart","asgari":0,"donem_borcu":0,"son_odeme":"","hesap_kesim":"","limit":700000,"toplam_borc":0,"odendi":false}];
 function ik(ks){return ks.map(k=>({...k,kull_limit:k.limit>0?k.limit-k.toplam_borc:0}));}
 const DEF={donemler:[{ay:5,yil:2026,kartlar:ik(JSON.parse(JSON.stringify(MK)))}],bilanco:{nakit_tl:268000,nakit_dolar:45.59,bes:280000,gram_24:55,gram_22:45,gram_ceyrek:19,gram_sahsi:90,gram_busra:50,bekir_dolar:10000,kayinvalide:81200},fiyatlar:{usd:38.5,au24:6851,au22:6281,ceyrek:11990},yatirimlar:[{sem:'NVDA',tip:'hisse',adet:14.69,fiyat_usd:130,kar_usd:3296.73},{sem:'BTC',tip:'kripto',adet:0.0369,fiyat_usd:95000,kar_usd:2856.37},{sem:'ETH',tip:'kripto',adet:0.408,fiyat_usd:1800,kar_usd:869.48}]};
 let S=JSON.parse(localStorage.getItem('fp_nl')||'null')||JSON.parse(JSON.stringify(DEF));
@@ -220,7 +207,6 @@ const N=n=>(n||n===0)?Math.round(n).toLocaleString('tr-TR'):'—';
 const NF=(n,d=2)=>isNaN(+n)?'0':(+n).toLocaleString('tr-TR',{minimumFractionDigits:0,maximumFractionDigits:d});
 
 let kayitTimer=null;
-function otomatikKaydet(){clearTimeout(kayitTimer);kayitTimer=setTimeout(kaydet,1500);}
 async function kaydet(){
   hist.push(JSON.stringify(S));if(hist.length>25)hist.shift();
   localStorage.setItem('fp_nl',JSON.stringify(S));
@@ -234,125 +220,62 @@ async function kaydet(){
 function geriAl(){if(!hist.length){msg('Geri alınacak yok');return;}S=JSON.parse(hist.pop());idx=S.donemler.length-1;render();msg('↩ Geri alındı');}
 function msg(m,t=2000){const el=document.getElementById('smsg');if(el){el.textContent=m;setTimeout(()=>el.textContent='',t);}}
 function gp(id,el){document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));document.getElementById('pg-'+id).classList.add('on');el.classList.add('on');}
-function te(s,g){if(!s)return'';try{const[d,m,y]=s.split('.');const dt=new Date(+y,+m-1,+d);dt.setDate(dt.getDate()+g);return String(dt.getDate()).padStart(2,'0')+'.'+String(dt.getMonth()+1).padStart(2,'0')+'.'+dt.getFullYear();}catch(e){return s;}}
-function setPx(t,h){['pxs','pxs2'].forEach(id=>{const el=document.getElementById(id);if(!el)return;el.className='px-b px-'+t;el.innerHTML=h;});}
-
-async function fetchFiyat(){
-  setPx('loading','<span class="spin"></span>çekiliyor');
-  try{
-    const r1=await fetch('https://open.er-api.com/v6/latest/USD');
-    const j1=await r1.json();
-    const usd=j1.rates?.TRY||S.fiyatlar.usd;
-    const r2=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=pax-gold,bitcoin,ethereum&vs_currencies=usd');
-    const j2=await r2.json();
-    const xauUsd=j2['pax-gold']?.usd||0;
-    const au24=xauUsd>0?(xauUsd/31.1035)*usd:S.fiyatlar.au24;
-    const au22=au24*(22/24);
-    const ceyrek=au24*1.7501;
-    if(j2.bitcoin?.usd)S.yatirimlar.forEach(y=>{if(y.sem==='BTC')y.fiyat_usd=j2.bitcoin.usd;});
-    if(j2.ethereum?.usd)S.yatirimlar.forEach(y=>{if(y.sem==='ETH')y.fiyat_usd=j2.ethereum.usd;});
-    const hisseler=S.yatirimlar.filter(y=>y.tip==='hisse').map(y=>y.sem);
-    await Promise.allSettled(hisseler.map(async sem=>{
-      try{
-        const r=await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${sem}?interval=1d&range=1d`);
-        const j=await r.json();
-        const p=j?.chart?.result?.[0]?.meta?.regularMarketPrice;
-        if(p>0)S.yatirimlar.forEach(y=>{if(y.sem===sem)y.fiyat_usd=p;});
-      }catch(e){}
-    }));
-    S.fiyatlar={usd,au24,au22,ceyrek};
-    const now=new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'});
-    setPx('ok','✓ '+now);
-    render();
-  }catch(e){
-    setPx('err','⚠ offline');
-    render();
-  }
-}
-
-let _remoteUpdate=false;
-
-// Firebase realtime sync — onSnapshot
-setSyncStatus('loading','Bağlanıyor...');
-onSnapshot(doc(db,'finansal','veriler'),(snap)=>{
-  if(snap.exists()){
-    const uzak=snap.data();
-    if(uzak&&typeof uzak==='object'){
-      _remoteUpdate=true;
-      S=uzak;
-      if(!S.donemler||!S.donemler.length)S=JSON.parse(JSON.stringify(DEF));
-      S.donemler.forEach(d=>{if(d.kartlar)d.kartlar.forEach(k=>{k.kull_limit=k.limit>0?k.limit-k.toplam_borc:k.kull_limit||0;});});
-      idx=Math.min(idx,S.donemler.length-1);
-      localStorage.setItem('fp_nl',JSON.stringify(S));
-      render();
-      setSyncStatus('ok','Güncellendi ✓');
-      _remoteUpdate=false;
-    }
-  }else{
-    // İlk kez — mevcut veriyi yükle
-    kaydet();
-    setSyncStatus('ok','Bağlı');
-  }
-},(err)=>{console.error(err);setSyncStatus('err','Bağlantı hatası');});
-
 function fUygula(){
-  const f=S.fiyatlar;
   const u=parseFloat(document.getElementById('inpusd').value);
-  const a4=parseFloat(document.getElementById('inpau24').value);
-  const a2=parseFloat(document.getElementById('inpau22').value);
-  const c=parseFloat(document.getElementById('inpceyrek').value);
-  if(!isNaN(u)&&u>0)f.usd=u;if(!isNaN(a4)&&a4>0)f.au24=a4;
-  if(!isNaN(a2)&&a2>0)f.au22=a2;if(!isNaN(c)&&c>0)f.ceyrek=c;
-  ['inpusd','inpau24','inpau22','inpceyrek'].forEach(id=>document.getElementById(id).value='');
-  render();msg('✓ Uygulandı');
+  const a24=parseFloat(document.getElementById('inpau24').value);
+  const a22=parseFloat(document.getElementById('inpau22').value);
+  const cy=parseFloat(document.getElementById('inpceyrek').value);
+  if(!isNaN(u))S.fiyatlar.usd=u;
+  if(!isNaN(a24))S.fiyatlar.au24=a24;
+  if(!isNaN(a22))S.fiyatlar.au22=a22;
+  if(!isNaN(cy))S.fiyatlar.ceyrek=cy;
+  render();msg('✓ Fiyatlar güncellendi');
 }
 
-function dg(y){idx=Math.max(0,Math.min(S.donemler.length-1,idx+y));acik=new Set();rB();}
 function yeniDonem(){
   const son=S.donemler[S.donemler.length-1];
-  let ay=son.ay+1,yil=son.yil;if(ay>12){ay=1;yil++;}
-  if(S.donemler.find(d=>d.ay===ay&&d.yil===yil)){msg('Bu dönem zaten var!');return;}
-  const ks=son.kartlar.map(k=>({ad:k.ad,asgari:0,donem_borcu:0,son_odeme:te(k.son_odeme,30),hesap_kesim:te(k.hesap_kesim,30),limit:k.limit,toplam_borc:k.odendi?Math.max(0,k.toplam_borc-k.donem_borcu):k.toplam_borc,kull_limit:0,odendi:false}));
-  ks.forEach(k=>{k.kull_limit=k.limit>0?k.limit-k.toplam_borc:0;});
-  S.donemler.push({ay,yil,kartlar:ks});idx=S.donemler.length-1;acik=new Set();kaydet();rB();
+  let ay=son.ay+1,yil=son.yil;
+  if(ay>12){ay=1;yil++;}
+  const yK=son.kartlar.map(k=>({...k,odendi:false,toplam_borc:k.odendi?0:k.toplam_borc,kull_limit:k.limit>0?k.limit-(k.odendi?0:k.toplam_borc):0}));
+  S.donemler.push({ay,yil,kartlar:yK});
+  idx=S.donemler.length-1;
+  render();msg('+ Yeni dönem eklendi');
+}
+function dg(y){idx=Math.max(0,Math.min(S.donemler.length-1,idx+y));rB();}
+function kEkle(){S.donemler[idx].kartlar.push({ad:'Yeni Kart',tip:'kart',asgari:0,donem_borcu:0,son_odeme:'',hesap_kesim:'',limit:0,toplam_borc:0,kull_limit:0,odendi:false});rB();}
+function kSil(ki,e){e.stopPropagation();if(!confirm('Silinsin mi?'))return;S.donemler[idx].kartlar.splice(ki,1);acik.delete(ki);rB();}
+function togK(ki){if(acik.has(ki))acik.delete(ki);else acik.add(ki);rB();}
+function kTip(ki,v){S.donemler[idx].kartlar[ki].tip=v;rB();}
+function kEdit(ki,f,el){
+  const k=S.donemler[idx].kartlar[ki];
+  const raw=el.textContent.trim();
+  if(f==='son_odeme'||f==='hesap_kesim'||f==='ad'){k[f]=raw;rB();return;}
+  const n=parseFloat(raw.replace(/\./g,'').replace(',','.'));
+  k[f]=isNaN(n)?raw:n;
+  if(f==='toplam_borc'||f==='limit')k.kull_limit=k.limit>0?k.limit-k.toplam_borc:k.kull_limit;
+  rB();
 }
 function odendi(ki,e){
   e.stopPropagation();
   const k=S.donemler[idx].kartlar[ki];
-  const kredi=k.tip==='kredi'; // kredi tipinde limit artmaz
+  const kredi=k.tip==='kredi';
   if(!k.odendi){
-    k.toplam_borc=Math.max(0,k.toplam_borc-k.donem_borcu);
+    k.toplam_borc=Math.max(0,k.toplam_borc-(k.donem_borcu||0));
     if(!kredi)k.kull_limit=k.limit>0?k.limit-k.toplam_borc:(k.kull_limit+(k.donem_borcu||0));
     k.odendi=true;
   }else{
-    k.toplam_borc+=k.donem_borcu||0;
+    k.toplam_borc+=(k.donem_borcu||0);
     if(!kredi)k.kull_limit=k.limit>0?k.limit-k.toplam_borc:Math.max(0,k.kull_limit-(k.donem_borcu||0));
     k.odendi=false;
   }
   rB();
 }
-function kSil(ki,e){e.stopPropagation();if(!confirm('Silinsin mi?'))return;S.donemler[idx].kartlar.splice(ki,1);rB();}
-function kEkle(){S.donemler[idx].kartlar.push({ad:'Yeni Kart',asgari:0,donem_borcu:0,son_odeme:'',hesap_kesim:'',limit:0,kull_limit:0,toplam_borc:0,odendi:false});acik.add(S.donemler[idx].kartlar.length-1);rB();}
-function kTip(ki,v){S.donemler[idx].kartlar[ki].tip=v;rB();}
-function togK(ki){if(acik.has(ki))acik.delete(ki);else acik.add(ki);rB();}
-function kEdit(ki,f,el){
-  const k=S.donemler[idx].kartlar[ki];
-  const raw=el.textContent.trim();
-  // Tarih alanlarını olduğu gibi sakla
-  if(f==='son_odeme'||f==='hesap_kesim'){
-    k[f]=raw;
-    rB();return;
-  }
-  const r=raw.replace(/\./g,'').replace(',','.');
-  const n=parseFloat(r);k[f]=isNaN(n)?raw:n;
-  if(f==='toplam_borc'||f==='limit')k.kull_limit=k.limit>0?k.limit-k.toplam_borc:k.kull_limit;
-  rB();
-}
+
 function rB(){
   const d=S.donemler[idx];
   document.getElementById('d-adi').textContent=AY[d.ay-1]+' '+d.yil+(idx===S.donemler.length-1?' · Güncel':'');
-  let tB=0,tA=0,tD=0,tL=0,tK=0,akt=0;
-  d.kartlar.forEach(k=>{tB+=k.toplam_borc||0;if(!k.odendi){tA+=k.asgari||0;tD+=k.donem_borcu||0;}tL+=k.limit||0;tK+=k.kull_limit||0;if(k.toplam_borc>0&&!k.odendi)akt++;});
+  let tB=0,tA=0,tD=0,tL=0,tK=0;
+  d.kartlar.forEach(k=>{tB+=k.toplam_borc||0;if(!k.odendi){tA+=k.asgari||0;tD+=k.donem_borcu||0;}tL+=k.limit||0;tK+=k.kull_limit||0;});
   document.getElementById('b-stats').innerHTML=
     '<div class="sc"><div class="sl">Toplam Borç</div><div class="sv r">'+N(tB)+' ₺</div></div>'+
     '<div class="sc"><div class="sl">Bu Ay Asgari</div><div class="sv">'+N(tA)+' ₺</div></div>'+
@@ -433,32 +356,35 @@ function rBil(){
     '</div><div class="brv b">'+N(r.v)+' ₺</div></div>'
   ).join('');
   document.getElementById('bil-tv').textContent=N(tv)+' ₺';
-  const bR=[{l:'Banka Borçları',v:B['Toplam Banka Borcu'],auto:true},{l:'Bekir Dolar',k:'bekir_dolar',u:'$',v:B['Bekir Dolar']},{l:'Kayınvalide Borcu',k:'kayinvalide',u:'₺',v:B['Kayınvalide Borcu']}];
-  document.getElementById('bil-b').innerHTML=bR.map(r=>'<div class="brow"><div class="brl">'+r.l+(r.auto?'<br><span style="font-size:13px;color:var(--tx3)">Bankalar sayfasından otomatik</span>':'<br><span class="e" contenteditable style="font-size:16px;font-weight:600;display:inline-block;min-width:50px;margin-top:2px" onblur="bilEdit(\''+r.k+'\',this)">'+NF(b[r.k],4)+'</span> <span style="font-size:14px;color:var(--tx2)">'+r.u+'</span>')+'</div><div class="brv r">'+N(r.v)+' ₺</div></div>').join('');
+  const bR=[
+    {l:'Banka Borçları',v:B['Toplam Banka Borcu'],auto:true},
+    {l:'Bekir Dolar',k:'bekir_dolar',u:'$',v:B['Bekir Dolar']},
+    {l:'Kayınvalide Borcu',k:'kayinvalide',u:'₺',v:B['Kayınvalide Borcu']}
+  ];
+  document.getElementById('bil-b').innerHTML=bR.map(r=>
+    '<div class="brow"><div class="brl">'+r.l+
+    (r.auto
+      ? '<br><span style="font-size:13px;color:var(--tx3)">Bankalar sayfasından otomatik</span>'
+      : '<br><span class="e" contenteditable style="font-size:16px;font-weight:600;display:inline-block;min-width:50px;margin-top:2px" onblur="bilEdit(\''+r.k+'\',this)">'+NF(b[r.k],4)+'</span> <span style="font-size:14px;color:var(--tx2)">'+r.u+'</span>'
+    )+
+    '</div><div class="brv r">'+N(r.v)+' ₺</div></div>'
+  ).join('');
   document.getElementById('bil-tb').textContent=N(tb)+' ₺';
 }
 
 function yEkle(){
   if(!S.yatirimlar)S.yatirimlar=[];
-  S.yatirimlar.push({sem:'AAPL',tip:'hisse',adet:1,fiyat_usd:0,maliyet_usd:0,kar_usd:0});
+  S.yatirimlar.push({sem:'AAPL',tip:'hisse',adet:1,fiyat_usd:0,kar_usd:0});
   rY();
 }
-function ySil(i,e){
-  e.stopPropagation();
-  if(!confirm('Silinsin mi?'))return;
-  S.yatirimlar.splice(i,1);
-  rY();
-}
+function ySil(i,e){e.stopPropagation();if(!confirm('Silinsin mi?'))return;S.yatirimlar.splice(i,1);rY();}
 function yEdit(i,f,el){
   const raw=el.textContent.trim().replace(/\./g,'').replace(',','.');
   const n=parseFloat(raw);
   S.yatirimlar[i][f]=isNaN(n)?el.textContent.trim():n;
   rY();
 }
-function yTip(i,v){
-  S.yatirimlar[i].tip=v;
-  rY();
-}
+function yTip(i,v){S.yatirimlar[i].tip=v;rY();}
 function rY(){
   if(!S.yatirimlar)S.yatirimlar=[];
   const f=S.fiyatlar;
@@ -500,7 +426,7 @@ function rY(){
       '<button class="dlb" onclick="ySil('+i+',event)" style="margin-left:auto;align-self:center">Sil</button>'+
     '</div>';
   }).join('');
-  document.getElementById('yat-list').innerHTML=rows||'<div style="padding:1.5rem;color:var(--tx3);text-align:center">Henüz yatırım eklenmedi — "+ Yatırım Ekle" ile başla</div>';
+  document.getElementById('yat-list').innerHTML=rows||'<div style="padding:1.5rem;color:var(--tx3);text-align:center">Henüz yatırım eklenmedi</div>';
   document.getElementById('yat-stats').innerHTML=
     '<div class="sc"><div class="sl">Toplam TL Değer</div><div class="sv b">'+N(tTL)+' ₺</div></div>'+
     '<div class="sc"><div class="sl">Toplam Kar/Zarar</div><div class="sv'+(tKZ>=0?' g':' r')+'">'+(tKZ>=0?'+':'')+tKZ.toLocaleString('tr-TR',{maximumFractionDigits:2})+' $</div></div>'+
@@ -512,28 +438,48 @@ function render(){rB();rBil();rY();}
 
 function togTema(){
   const html=document.documentElement;
-  const simdiki=html.getAttribute('data-tema');
-  const yeni=simdiki==='acik'?'karanlik':'acik';
+  const yeni=html.getAttribute('data-tema')==='acik'?'karanlik':'acik';
   html.setAttribute('data-tema',yeni);
   const btn=document.getElementById('tema-btn');
   if(btn)btn.textContent=yeni==='acik'?'🌙':'☀️';
   localStorage.setItem('fp_tema',yeni);
 }
 
-// Global fonksiyonları window'a ata
+// Global atamalar (type=module için)
 window.gp=gp;window.dg=dg;window.yeniDonem=yeniDonem;window.kEkle=kEkle;
 window.togK=togK;window.kTip=kTip;window.kEdit=kEdit;window.odendi=odendi;window.kSil=kSil;
 window.geriAl=geriAl;window.kaydet=kaydet;window.fUygula=fUygula;
 window.bilEdit=bilEdit;window.yEkle=yEkle;window.ySil=ySil;window.yEdit=yEdit;window.yTip=yTip;
-window.fetchFiyat=fetchFiyat;window.togTema=togTema;
+window.togTema=togTema;
 
-// Kayıtlı temayı uygula
+// Tema uygula
 (function(){
   const t=localStorage.getItem('fp_tema')||'karanlik';
   document.documentElement.setAttribute('data-tema',t);
   const btn=document.getElementById('tema-btn');
   if(btn)btn.textContent=t==='acik'?'🌙':'☀️';
 })();
+
+// Firebase realtime sync
+setSyncStatus('loading','Bağlanıyor...');
+onSnapshot(doc(db,'finansal','veriler'),(snap)=>{
+  if(snap.exists()){
+    const uzak=snap.data();
+    if(uzak&&typeof uzak==='object'){
+      S=uzak;
+      if(!S.donemler||!S.donemler.length)S=JSON.parse(JSON.stringify(DEF));
+      if(!S.yatirimlar)S.yatirimlar=[];
+      S.donemler.forEach(d=>{if(d.kartlar)d.kartlar.forEach(k=>{k.kull_limit=k.limit>0?k.limit-k.toplam_borc:k.kull_limit||0;});});
+      idx=Math.min(idx,S.donemler.length-1);
+      localStorage.setItem('fp_nl',JSON.stringify(S));
+      render();
+      setSyncStatus('ok','Güncellendi ✓');
+    }
+  }else{
+    kaydet();
+    setSyncStatus('ok','Bağlı ✓');
+  }
+},(err)=>{console.error(err);setSyncStatus('err','Bağlantı hatası');});
 
 render();
 </script>
