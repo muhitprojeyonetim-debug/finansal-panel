@@ -442,7 +442,8 @@ const FMP_KEY='1op1hxMpYGZijHLlitOr1nX5lrSCnDFnDFp';
 
 async function hisseFiyatCek(sem,i){
   try{
-    const r=await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${sem.toUpperCase()}?apikey=${FMP_KEY}`);
+    const url=`https://financialmodelingprep.com/api/v3/quote-short/${sem.toUpperCase()}?apikey=${FMP_KEY}`;
+    const r=await fetch('https://corsproxy.io/?'+encodeURIComponent(url));
     const j=await r.json();
     if(j&&j[0]&&j[0].price){
       S.yatirimlar[i].fiyat_usd=j[0].price;
@@ -453,26 +454,29 @@ async function hisseFiyatCek(sem,i){
 }
 
 async function fetchFiyat(){
+  let usd=S.fiyatlar.usd, au24=S.fiyatlar.au24;
   try{
-    const r1=await fetch('https://open.er-api.com/v6/latest/USD');
-    const j1=await r1.json();
-    const usd=j1.rates?.TRY||S.fiyatlar.usd;
-    const r2=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=pax-gold&vs_currencies=usd');
-    const j2=await r2.json();
-    const xauUsd=j2['pax-gold']?.usd||0;
-    const au24=xauUsd>0?(xauUsd/31.1035)*usd:S.fiyatlar.au24;
-    S.fiyatlar={usd,au24,au22:au24*(22/24),ceyrek:au24*1.7501};
-    if(S.yatirimlar&&S.yatirimlar.length){
-      await Promise.allSettled(S.yatirimlar.map(async(y,i)=>{
-        try{
-          const r=await fetch(`https://financialmodelingprep.com/api/v3/quote-short/${y.sem.toUpperCase()}?apikey=${FMP_KEY}`);
-          const j=await r.json();
-          if(j&&j[0]&&j[0].price)S.yatirimlar[i].fiyat_usd=j[0].price;
-        }catch(e){}
-      }));
-    }
-    render();msg('✓ Tüm fiyatlar güncellendi');
-  }catch(e){msg('⚠ Otomatik fiyat alınamadı, manuel gir');}
+    const r=await fetch('https://api.frankfurter.app/latest?from=USD&to=TRY');
+    const j=await r.json();
+    if(j.rates?.TRY)usd=j.rates.TRY;
+  }catch(e){}
+  try{
+    const r=await fetch('https://api.metals.live/v1/spot/gold');
+    const j=await r.json();
+    if(j&&j[0]&&j[0].gold)au24=(j[0].gold/31.1035)*usd;
+  }catch(e){}
+  S.fiyatlar={usd,au24,au22:au24*(22/24),ceyrek:au24*1.7501};
+  if(S.yatirimlar&&S.yatirimlar.length){
+    await Promise.allSettled(S.yatirimlar.map(async(y,i)=>{
+      try{
+        const url=`https://financialmodelingprep.com/api/v3/quote-short/${y.sem.toUpperCase()}?apikey=${FMP_KEY}`;
+          const r=await fetch('https://corsproxy.io/?'+encodeURIComponent(url));
+        const j=await r.json();
+        if(j&&j[0]&&j[0].price)S.yatirimlar[i].fiyat_usd=j[0].price;
+      }catch(e){}
+    }));
+  }
+  render();msg('✓ Fiyatlar güncellendi');
 }
 
 function togTema(){
