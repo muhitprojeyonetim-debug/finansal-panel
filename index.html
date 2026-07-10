@@ -451,18 +451,6 @@ async function hisseFiyatCek(sem,i){
     }else{msg('⚠ '+sem+' bulunamadı, fiyatı elle gir');}
   }catch(e){msg('⚠ Fiyat alınamadı, elle gir');}
 }
-  try{
-    const r1=await fetch('https://open.er-api.com/v6/latest/USD');
-    const j1=await r1.json();
-    const usd=j1.rates?.TRY||S.fiyatlar.usd;
-    const r2=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=pax-gold&vs_currencies=usd');
-    const j2=await r2.json();
-    const xauUsd=j2['pax-gold']?.usd||0;
-    const au24=xauUsd>0?(xauUsd/31.1035)*usd:S.fiyatlar.au24;
-    S.fiyatlar={usd,au24,au22:au24*(22/24),ceyrek:au24*1.7501};
-    render();msg('✓ Fiyatlar güncellendi');
-  }catch(e){msg('⚠ Otomatik fiyat alınamadı, manuel gir');}
-}
 
 async function fetchFiyat(){
   try{
