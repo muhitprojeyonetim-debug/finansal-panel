@@ -443,7 +443,7 @@ const FMP_KEY='1op1hxMpYGZijHLlitOr1nX5lrSCnDFnDFp';
 async function hisseFiyatCek(sem,i){
   try{
     const url=`https://financialmodelingprep.com/api/v3/quote-short/${sem.toUpperCase()}?apikey=${FMP_KEY}`;
-    const r=await fetch('https://corsproxy.io/?'+encodeURIComponent(url));
+    const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
     const j=await r.json();
     if(j&&j[0]&&j[0].price){
       S.yatirimlar[i].fiyat_usd=j[0].price;
@@ -470,7 +470,7 @@ async function fetchFiyat(){
     await Promise.allSettled(S.yatirimlar.map(async(y,i)=>{
       try{
         const url=`https://financialmodelingprep.com/api/v3/quote-short/${y.sem.toUpperCase()}?apikey=${FMP_KEY}`;
-          const r=await fetch('https://corsproxy.io/?'+encodeURIComponent(url));
+          const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
         const j=await r.json();
         if(j&&j[0]&&j[0].price)S.yatirimlar[i].fiyat_usd=j[0].price;
       }catch(e){}
