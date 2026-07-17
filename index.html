@@ -438,11 +438,13 @@ function rY(){
 
 function render(){rB();rBil();rY();}
 
-const FMP_KEY='1op1hxMpYGZijHLlitOr1nX5lrSCnDFnDFp';
+const FMP_KEY='1op1hxMpYGZijHLlitOr1nX5lrSCnDFp';
 
 async function hisseFiyatCek(sem,i){
   try{
-    const url=`https://financialmodelingprep.com/api/v3/quote-short/${sem.toUpperCase()}?apikey=${FMP_KEY}`;
+    const y=S.yatirimlar[i];
+    const sym=y.tip==='kripto'?sem.toUpperCase()+'USD':sem.toUpperCase();
+    const url=`https://financialmodelingprep.com/api/v3/quote/${sym}?apikey=${FMP_KEY}`;
     const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
     const j=await r.json();
     if(j&&j[0]&&j[0].price){
@@ -455,22 +457,27 @@ async function hisseFiyatCek(sem,i){
 
 async function fetchFiyat(){
   let usd=S.fiyatlar.usd, au24=S.fiyatlar.au24;
+  // USD/TRY
   try{
     const r=await fetch('https://api.frankfurter.app/latest?from=USD&to=TRY');
     const j=await r.json();
     if(j.rates?.TRY)usd=j.rates.TRY;
   }catch(e){}
+  // Altın ons (FMP üzerinden - XAUUSD)
   try{
-    const r=await fetch('https://api.metals.live/v1/spot/gold');
+    const url=`https://financialmodelingprep.com/api/v3/quote/XAUUSD?apikey=${FMP_KEY}`;
+    const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
     const j=await r.json();
-    if(j&&j[0]&&j[0].gold)au24=(j[0].gold/31.1035)*usd;
+    if(j&&j[0]&&j[0].price)au24=(j[0].price/31.1035)*usd;
   }catch(e){}
   S.fiyatlar={usd,au24,au22:au24*(22/24),ceyrek:au24*1.7501};
+  // Yatırımlar
   if(S.yatirimlar&&S.yatirimlar.length){
     await Promise.allSettled(S.yatirimlar.map(async(y,i)=>{
       try{
-        const url=`https://financialmodelingprep.com/api/v3/quote-short/${y.sem.toUpperCase()}?apikey=${FMP_KEY}`;
-          const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
+        const sym=y.tip==='kripto'?y.sem.toUpperCase()+'USD':y.sem.toUpperCase();
+        const url=`https://financialmodelingprep.com/api/v3/quote/${sym}?apikey=${FMP_KEY}`;
+        const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
         const j=await r.json();
         if(j&&j[0]&&j[0].price)S.yatirimlar[i].fiyat_usd=j[0].price;
       }catch(e){}
