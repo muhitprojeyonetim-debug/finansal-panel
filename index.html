@@ -143,7 +143,8 @@ body{background:var(--bg);color:var(--tx);font-family:system-ui,sans-serif;font-
   <div class="box">
     <div class="bxh">Piyasa Fiyatları
       <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
-        <button class="btn btb" onclick="fetchFiyat()" style="font-size:11px;padding:4px 9px">↻ Yenile</button>
+        <button class="btn btg" onclick="fetchDovizAltin()" style="font-size:11px;padding:4px 9px">↻ Dolar & Altın</button>
+        <button class="btn btb" onclick="fetchFiyat()" style="font-size:11px;padding:4px 9px">↻ Hepsi</button>
         <button class="btn" onclick="fUygula()" style="font-size:11px;padding:4px 9px">✓ Uygula</button>
       </div>
     </div>
@@ -440,6 +441,8 @@ function render(){rB();rBil();rY();}
 
 const TD_KEY='e3311432592343b2ac59b2b5016a235d';
 
+const bekle=ms=>new Promise(r=>setTimeout(r,ms));
+
 // Twelve Data sembol formatı: hisse düz (AAPL), kripto BTC/USD, döviz USD/TRY, altın XAU/USD
 function tdSembol(y){
   const s=y.sem.toUpperCase().trim();
@@ -452,6 +455,7 @@ async function tdFiyat(symbol){
   const r=await fetch(url);
   const j=await r.json();
   if(j&&j.price)return parseFloat(j.price);
+  if(j&&j.code===429)throw new Error('limit');
   return null;
 }
 
@@ -464,33 +468,52 @@ async function hisseFiyatCek(sem,i){
       rY();
       msg('✓ '+sem.toUpperCase()+' fiyatı güncellendi');
     }else{msg('⚠ '+sem+' bulunamadı, fiyatı elle gir');}
-  }catch(e){msg('⚠ Fiyat alınamadı, elle gir');}
+  }catch(e){msg('⚠ '+(e.message==='limit'?'Limit doldu, 1 dk bekle':'Fiyat alınamadı, elle gir'));}
+}
+
+async function fetchDovizAltin(){
+  let usd=S.fiyatlar.usd, au24=S.fiyatlar.au24;
+  try{
+    msg('⏳ Dolar & Altın çekiliyor...',30000);
+    const url=`https://api.twelvedata.com/price?symbol=USD/TRY,XAU/USD&apikey=${TD_KEY}`;
+    const r=await fetch(url);
+    const j=await r.json();
+    if(j['USD/TRY']&&j['USD/TRY'].price)usd=parseFloat(j['USD/TRY'].price);
+    if(j['XAU/USD']&&j['XAU/USD'].price)au24=(parseFloat(j['XAU/USD'].price)/31.1035)*usd;
+    S.fiyatlar={usd,au24,au22:au24*(22/24),ceyrek:au24*1.7501};
+    render();msg('✓ Dolar & Altın güncellendi');
+  }catch(e){msg('⚠ Alınamadı, elle gir');}
 }
 
 async function fetchFiyat(){
   let usd=S.fiyatlar.usd, au24=S.fiyatlar.au24;
-  msg('⏳ Fiyatlar çekiliyor...');
-  // USD/TRY
+  const toplam=1+(S.yatirimlar?S.yatirimlar.length:0);
+  let sayac=0;
+  // USD/TRY + Altın TEK istekte (öncelikli - anında gelir)
   try{
-    const p=await tdFiyat('USD/TRY');
-    if(p)usd=p;
-  }catch(e){}
-  // Altın ons (XAU/USD) → gram TL
-  try{
-    const p=await tdFiyat('XAU/USD');
-    if(p)au24=(p/31.1035)*usd;
+    msg('⏳ Dolar & Altın çekiliyor...',60000);
+    const url=`https://api.twelvedata.com/price?symbol=USD/TRY,XAU/USD&apikey=${TD_KEY}`;
+    const r=await fetch(url);
+    const j=await r.json();
+    if(j['USD/TRY']&&j['USD/TRY'].price)usd=parseFloat(j['USD/TRY'].price);
+    if(j['XAU/USD']&&j['XAU/USD'].price)au24=(parseFloat(j['XAU/USD'].price)/31.1035)*usd;
+    sayac++;
   }catch(e){}
   S.fiyatlar={usd,au24,au22:au24*(22/24),ceyrek:au24*1.7501};
-  // Yatırımlar (sırayla - ücretsiz plan dakikada 8 istek)
+  render();
+  msg('✓ Dolar & Altın güncellendi'+((S.yatirimlar&&S.yatirimlar.length)?' — yatırımlar çekiliyor...':''),60000);
+  // Yatırımlar — her istek arası 8 sn bekle (dakikada 8 limit)
   if(S.yatirimlar&&S.yatirimlar.length){
     for(let i=0;i<S.yatirimlar.length;i++){
+      await bekle(8000);
       try{
+        msg('⏳ '+S.yatirimlar[i].sem+' ('+(++sayac)+'/'+toplam+')...',60000);
         const p=await tdFiyat(tdSembol(S.yatirimlar[i]));
-        if(p)S.yatirimlar[i].fiyat_usd=p;
+        if(p){S.yatirimlar[i].fiyat_usd=p;render();}
       }catch(e){}
     }
   }
-  render();msg('✓ Fiyatlar güncellendi');
+  render();msg('✓ Tüm fiyatlar güncellendi');
 }
 
 function togTema(){
@@ -507,7 +530,7 @@ window.gp=gp;window.dg=dg;window.yeniDonem=yeniDonem;window.kEkle=kEkle;
 window.togK=togK;window.kTip=kTip;window.kEdit=kEdit;window.odendi=odendi;window.kSil=kSil;
 window.geriAl=geriAl;window.kaydet=kaydet;window.fUygula=fUygula;
 window.bilEdit=bilEdit;window.yEkle=yEkle;window.ySil=ySil;window.yEdit=yEdit;window.yTip=yTip;
-window.togTema=togTema;window.fetchFiyat=fetchFiyat;
+window.togTema=togTema;window.fetchFiyat=fetchFiyat;window.fetchDovizAltin=fetchDovizAltin;
 
 // Tema uygula
 (function(){
