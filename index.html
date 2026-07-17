@@ -438,17 +438,29 @@ function rY(){
 
 function render(){rB();rBil();rY();}
 
-const FMP_KEY='1op1hxMpYGZijHLlitOr1nX5lrSCnDFp';
+const TD_KEY='e3311432592343b2ac59b2b5016a235d';
+
+// Twelve Data sembol formatı: hisse düz (AAPL), kripto BTC/USD, döviz USD/TRY, altın XAU/USD
+function tdSembol(y){
+  const s=y.sem.toUpperCase().trim();
+  if(y.tip==='kripto')return s+'/USD';
+  return s;
+}
+
+async function tdFiyat(symbol){
+  const url=`https://api.twelvedata.com/price?symbol=${encodeURIComponent(symbol)}&apikey=${TD_KEY}`;
+  const r=await fetch(url);
+  const j=await r.json();
+  if(j&&j.price)return parseFloat(j.price);
+  return null;
+}
 
 async function hisseFiyatCek(sem,i){
   try{
     const y=S.yatirimlar[i];
-    const sym=y.tip==='kripto'?sem.toUpperCase()+'USD':sem.toUpperCase();
-    const url=`https://financialmodelingprep.com/api/v3/quote/${sym}?apikey=${FMP_KEY}`;
-    const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
-    const j=await r.json();
-    if(j&&j[0]&&j[0].price){
-      S.yatirimlar[i].fiyat_usd=j[0].price;
+    const p=await tdFiyat(tdSembol(y));
+    if(p){
+      S.yatirimlar[i].fiyat_usd=p;
       rY();
       msg('✓ '+sem.toUpperCase()+' fiyatı güncellendi');
     }else{msg('⚠ '+sem+' bulunamadı, fiyatı elle gir');}
@@ -457,31 +469,26 @@ async function hisseFiyatCek(sem,i){
 
 async function fetchFiyat(){
   let usd=S.fiyatlar.usd, au24=S.fiyatlar.au24;
+  msg('⏳ Fiyatlar çekiliyor...');
   // USD/TRY
   try{
-    const r=await fetch('https://api.frankfurter.app/latest?from=USD&to=TRY');
-    const j=await r.json();
-    if(j.rates?.TRY)usd=j.rates.TRY;
+    const p=await tdFiyat('USD/TRY');
+    if(p)usd=p;
   }catch(e){}
-  // Altın ons (FMP üzerinden - XAUUSD)
+  // Altın ons (XAU/USD) → gram TL
   try{
-    const url=`https://financialmodelingprep.com/api/v3/quote/XAUUSD?apikey=${FMP_KEY}`;
-    const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
-    const j=await r.json();
-    if(j&&j[0]&&j[0].price)au24=(j[0].price/31.1035)*usd;
+    const p=await tdFiyat('XAU/USD');
+    if(p)au24=(p/31.1035)*usd;
   }catch(e){}
   S.fiyatlar={usd,au24,au22:au24*(22/24),ceyrek:au24*1.7501};
-  // Yatırımlar
+  // Yatırımlar (sırayla - ücretsiz plan dakikada 8 istek)
   if(S.yatirimlar&&S.yatirimlar.length){
-    await Promise.allSettled(S.yatirimlar.map(async(y,i)=>{
+    for(let i=0;i<S.yatirimlar.length;i++){
       try{
-        const sym=y.tip==='kripto'?y.sem.toUpperCase()+'USD':y.sem.toUpperCase();
-        const url=`https://financialmodelingprep.com/api/v3/quote/${sym}?apikey=${FMP_KEY}`;
-        const r=await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
-        const j=await r.json();
-        if(j&&j[0]&&j[0].price)S.yatirimlar[i].fiyat_usd=j[0].price;
+        const p=await tdFiyat(tdSembol(S.yatirimlar[i]));
+        if(p)S.yatirimlar[i].fiyat_usd=p;
       }catch(e){}
-    }));
+    }
   }
   render();msg('✓ Fiyatlar güncellendi');
 }
